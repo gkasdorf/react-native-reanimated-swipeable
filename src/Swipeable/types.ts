@@ -26,7 +26,8 @@ export interface ISwipeableContext {
 }
 
 export interface ISwipeableAction {
-  onAction: () => unknown;
+  onAction?: (actionParamObject?: object) => unknown;
+  actionParamObject?: object;
   icon: () => React.JSX.Element;
   backgroundColor: string;
   triggerThreshold: number;

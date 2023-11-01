@@ -94,22 +94,38 @@ export function Swipeable({
           leftActionGroup.secondStep != null &&
           absTranslation >= leftActionGroup.secondStep.triggerThreshold
         ) {
-          runOnJS(leftActionGroup.secondStep.onAction)();
+          if (leftActionGroup.secondStep.onAction != null) {
+            runOnJS(leftActionGroup.secondStep.onAction)(
+              leftActionGroup.secondStep.actionParamObject
+            );
+          }
         } else if (
           absTranslation >= leftActionGroup.firstStep.triggerThreshold
         ) {
-          runOnJS(leftActionGroup.firstStep.onAction)();
+          if (leftActionGroup.firstStep.onAction != null) {
+            runOnJS(leftActionGroup.firstStep.onAction)(
+              leftActionGroup.firstStep.actionParamObject
+            );
+          }
         }
       } else if (e.translationX < 0 && rightActionGroup != null) {
         if (
           rightActionGroup.secondStep != null &&
           absTranslation >= rightActionGroup.secondStep.triggerThreshold
         ) {
-          runOnJS(rightActionGroup.secondStep.onAction)();
+          if (rightActionGroup.secondStep.onAction != null) {
+            runOnJS(rightActionGroup.secondStep.onAction)(
+              rightActionGroup.secondStep.actionParamObject
+            );
+          }
         } else if (
           absTranslation >= rightActionGroup.firstStep.triggerThreshold
         ) {
-          runOnJS(rightActionGroup.firstStep.onAction)();
+          if (rightActionGroup.firstStep.onAction != null) {
+            runOnJS(rightActionGroup.firstStep.onAction)(
+              rightActionGroup.firstStep.actionParamObject
+            );
+          }
         }
       }
     },
