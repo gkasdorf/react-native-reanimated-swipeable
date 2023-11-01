@@ -1,6 +1,5 @@
 import React from 'react';
-import { SharedValue } from 'react-native-reanimated';
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/reanimated2/animation/springUtils';
+import { SharedValue, WithSpringConfig } from 'react-native-reanimated';
 
 export interface ISwipeableProps {
   leftActionGroup?: ISwipeableActionGroup;
@@ -16,7 +15,7 @@ export interface ISwipeableOptions {
   overshootClamping: boolean;
   iconPopScale: number;
   onHitStep?: () => unknown;
-  animationOptions: Partial<SpringConfig>;
+  animationOptions: Partial<WithSpringConfig>;
 }
 
 export interface ISwipeableContext {
@@ -38,7 +37,7 @@ export interface ISwipeableActionGroup {
   secondStep?: ISwipeableAction;
 }
 
-export const defaultSwipeableAnimationOptions: SpringConfig = {
+export const defaultSwipeableAnimationOptions: Partial<WithSpringConfig> = {
   mass: 1,
   damping: 5,
   stiffness: 100,

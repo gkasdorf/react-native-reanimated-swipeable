@@ -17,10 +17,11 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-  clamp,
+  WithSpringConfig,
 } from 'react-native-reanimated';
 import SwipeableSide from './SwipeableSide';
 import { SwipeableContext } from './SwipeableContext';
+import { clamp } from './util';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 
@@ -84,7 +85,7 @@ export function Swipeable({
 
       // Reset position to zero with a spring. The decay's velocity will start at
       // the velocity of the pan gesture and decay to zero.
-      translationX.value = withSpring(0, animationOptions);
+      translationX.value = withSpring(0, animationOptions as WithSpringConfig);
 
       // Run whatever action is appropriate
       const absTranslation = Math.abs(e.translationX);
