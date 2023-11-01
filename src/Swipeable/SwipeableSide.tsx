@@ -26,7 +26,7 @@ export default function SwipeableSide({
   const { options, translationX, isActive } = swipeable;
   const { firstStep, secondStep } = actionGroup;
 
-  const [icon, setIcon] = useState(firstStep.icon);
+  const [icon, setIcon] = useState(0);
   const iconScale = useSharedValue(1);
 
   // Create our input range
@@ -34,6 +34,11 @@ export default function SwipeableSide({
     () => createColorInputRange(actionGroup),
     [actionGroup]
   );
+
+  // Weird that we have to do this, but an ongoing bug in Reanimated that should
+  // be fixed in 3.6
+  const FirstIcon = useMemo(() => actionGroup.firstStep.icon, [actionGroup]);
+  const SecondIcon = useMemo(() => actionGroup.secondStep?.icon, [actionGroup]);
 
   /*
    * Function we run when poping the icon and playing a haptic
@@ -68,7 +73,7 @@ export default function SwipeableSide({
       // Check first if we should reset the icon
       if (!current.isActive) {
         if (curr < 1) {
-          runOnJS(setIcon)(firstStep.icon);
+          runOnJS(setIcon)(0);
         }
 
         return;
@@ -88,7 +93,7 @@ export default function SwipeableSide({
         curr >= secondStep?.triggerThreshold &&
         prev < secondStep?.triggerThreshold
       ) {
-        runOnJS(setIcon)(secondStep.icon);
+        runOnJS(setIcon)(1);
         popIcon();
       } else if (
         secondStep != null &&
@@ -97,7 +102,7 @@ export default function SwipeableSide({
       ) {
         // Next check if we need to reset the icon back to the first one. Pop
         // if we do.
-        runOnJS(setIcon)(firstStep.icon);
+        runOnJS(setIcon)(0);
         popIcon();
       } else if (
         curr >= firstStep.triggerThreshold &&
@@ -174,7 +179,9 @@ export default function SwipeableSide({
         backgroundStyle,
       ]}
     >
-      <Animated.View style={[iconStyle]}>{icon}</Animated.View>
+      <Animated.View style={[iconStyle]}>
+        {icon === 0 || SecondIcon == null ? <FirstIcon /> : <SecondIcon />}
+      </Animated.View>
     </Animated.View>
   );
 }

@@ -19,6 +19,8 @@ export const createColorInputRange = (
   }
 };
 
-export const clamp = (number: number, min: number, max: number) => {
+export const clamp = (number: number, min: number, max: number): number => {
+  'worklet';
+
   return Math.max(min, Math.min(number, max));
 };
