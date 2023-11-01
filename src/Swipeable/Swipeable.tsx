@@ -157,7 +157,7 @@ export function Swipeable({
   // Create the pan gesture handler
   const panGesture = Gesture.Pan()
     .activeOffsetX(swipeableOptions.activeOffset)
-    .hitSlop({ left: 20, right: 20 }) // Add hitslop for swipe to go back in navigation
+    .hitSlop({ left: 40, right: 40 }) // Add hitslop for swipe to go back in navigation
     .maxPointers(swipeableOptions.maxPointers)
     .onBegin(onPanBegin)
     .onUpdate(onPanUpdate)
