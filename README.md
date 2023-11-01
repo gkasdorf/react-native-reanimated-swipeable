@@ -29,10 +29,11 @@ In favor of allowing this package to be used by Expo Go users, no haptics functi
 
 ### Options
 
-| Option             | Type           | Default           | Description                                                                     |
-|--------------------|----------------|-------------------|---------------------------------------------------------------------------------|
-| `iconPopScale`     | `number`       | `1.2`             | The scale to animate the icon to when the user swipes past a trigger threshold. |
-| `animationOptions` | `SpringConfig` | See Spring Config | The configuration for the spring animation when closing the row.                |
+| Option             | Type             | Default           | Description                                                                     |
+|--------------------|------------------|-------------------|---------------------------------------------------------------------------------|
+| `iconPopScale`     | `number`         | `1.2`             | The scale to animate the icon to when the user swipes past a trigger threshold. |
+| `onHitStep?`       | `() => unknown`  | `undefined`       | The function to call when the user swipes past a trigger threshold.             |
+| `animationOptions` | `SpringConfig`   | See Spring Config | The configuration for the spring animation when closing the row.                |
 
 
 ### Spring Config
@@ -45,7 +46,7 @@ In favor of allowing this package to be used by Expo Go users, no haptics functi
 | `restSpeedThreshold`         | `number`   | `0.01`  | The speed threshold of the spring animation.         |
 | `restDisplacementThreshold`  | `number`   | `0.01`  | The displacement threshold of the spring animation.  |
 
-For more information, see the (Reanimated documentation)[https://docs.swmansion.com/react-native-reanimated/docs/1.x/animations/spring/].
+For more information, see the [Reanimated documentation](https://docs.swmansion.com/react-native-reanimated/docs/1.x/animations/spring/).
 
 
 ### Action Group Options
