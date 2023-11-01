@@ -25,7 +25,7 @@ import { SpringConfig } from 'react-native-reanimated/lib/typescript/reanimated2
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 
-export default function Swipeable({
+export function Swipeable({
   rightActionGroup,
   leftActionGroup,
   options,
