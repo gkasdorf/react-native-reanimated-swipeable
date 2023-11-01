@@ -1,6 +1,6 @@
 {
   "name": "react-native-reanimated-swipeable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A performant and configurable swipeable row using Reanimated and React Native Gesture Handler",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
