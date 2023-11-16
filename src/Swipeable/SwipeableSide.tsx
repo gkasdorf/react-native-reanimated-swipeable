@@ -169,7 +169,7 @@ export default function SwipeableSide({
       } else {
         return {
           backgroundColor:
-            translationX.value > secondStep.triggerThreshold
+            Math.abs(translationX.value) < secondStep.triggerThreshold
               ? firstStep.backgroundColor
               : secondStep.backgroundColor,
         };
