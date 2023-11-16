@@ -16,6 +16,7 @@ export interface ISwipeableOptions {
   iconPopScale: number;
   onHitStep?: () => unknown;
   animationOptions: Partial<WithSpringConfig>;
+  interpolateColors?: boolean;
 }
 
 export interface ISwipeableContext {

@@ -135,28 +135,45 @@ export default function SwipeableSide({
 
     // If the second setup is not defined, we are only transitioning to the first
     // color
-    if (secondStep == null) {
-      return {
-        backgroundColor: interpolateColor(
-          Math.abs(translationX.value),
-          inputRange,
-          ['transparent', firstStep.backgroundColor]
-        ),
-      };
+
+    // If we are interpolating the colors...
+    if (options.interpolateColors) {
+      if (secondStep == null) {
+        return {
+          backgroundColor: interpolateColor(
+            Math.abs(translationX.value),
+            inputRange,
+            ['transparent', firstStep.backgroundColor]
+          ),
+        };
+      } else {
+        return {
+          backgroundColor: interpolateColor(
+            Math.abs(translationX.value),
+            inputRange,
+            [
+              'transparent',
+              firstStep.backgroundColor,
+              firstStep.backgroundColor,
+              secondStep.backgroundColor,
+            ]
+          ),
+        };
+      }
     } else {
-      // Otherwise we need to transition between both colors
-      return {
-        backgroundColor: interpolateColor(
-          Math.abs(translationX.value),
-          inputRange,
-          [
-            'transparent',
-            firstStep.backgroundColor,
-            firstStep.backgroundColor,
-            secondStep.backgroundColor,
-          ]
-        ),
-      };
+      // Just return the background color if there is no second step
+      if (secondStep == null) {
+        return {
+          backgroundColor: firstStep.backgroundColor,
+        };
+      } else {
+        return {
+          backgroundColor:
+            translationX.value > secondStep.triggerThreshold
+              ? firstStep.backgroundColor
+              : secondStep.backgroundColor,
+        };
+      }
     }
   });
 
